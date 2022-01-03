@@ -1,0 +1,34 @@
+﻿<Window x:Class="Galgje4._0.Info"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Galgje4._0"
+        mc:Ignorable="d"
+          Title="Spelregels" Height="550" Width="455" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid Background="Black">
+        
+
+
+        <StackPanel Background="Wheat" Margin="10" >
+            <Label FontSize="35px" FontWeight="Bold" HorizontalAlignment="Center">De Spelregels van Galgje</Label>
+         
+            <Label Background="Black" Height="0.5"></Label>
+            <Label HorizontalAlignment="Center" FontSize="22px" >Dubbele speler</Label>
+            <Label FontSize="14px" FontWeight="Bold" Margin="3" HorizontalAlignment="Center">1. Tegenspeler geeft geheim woord in</Label>
+            <Label FontSize="14px" FontWeight="Bold" Margin="3" HorizontalAlignment="Center" >2. Elke speler speelt 1 spel</Label>
+            
+            <Label HorizontalAlignment="Center" FontSize="22px" >Enkele speler</Label>
+            <Label FontSize="14px" FontWeight="Bold" Margin="3" HorizontalAlignment="Center">3. Klik op random woord voor het spel te starten</Label>
+            <Label FontSize="14px" FontWeight="Bold" Margin="3" HorizontalAlignment="Center">4. Er worden 2 spellen gespeeld het beste spel word opgeslagen</Label>
+
+            <Label HorizontalAlignment="Center" FontSize="22px" >Standaart regels</Label>
+            <Label FontSize="14px" FontWeight="Bold" Margin="3" HorizontalAlignment="Center">5. Het spel is verloren als je ophangt</Label>
+            <Label FontSize="14px" Foreground="Red" FontWeight="Bold" Margin="3" HorizontalAlignment="Center" >6. Het spel is gewonnen als je het volledige woord typt</Label>
+            <Label FontSize="14px" FontWeight="Bold" Margin="3" HorizontalAlignment="Center" >7. Bij klikken op nieuw spel word het huidige spel gewist</Label>
+            <Label FontSize="14px" FontWeight="Bold" Margin="3" HorizontalAlignment="Center">8. Het gebruik van een hint telt niet mee voor de high scores </Label>
+            <Button FontWeight="Bold" Height="45px" Margin="10" Click="Button_Click" >Sluit info</Button>
+        </StackPanel>
+
+    </Grid>
+</Window>

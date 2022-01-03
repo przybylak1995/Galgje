@@ -1,0 +1,41 @@
+﻿<Window x:Class="Galgje2._0Ref.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Galgje2._0Ref"
+        mc:Ignorable="d"
+         Title="MainWindow" Height="500" Width="1000">
+    <Grid Background="Black" Name="gridKleur">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="1" VerticalAlignment="Bottom" Name="lblAfteller" FontSize="50px" Foreground="Green" HorizontalAlignment="Center" FontWeight="Bold"></Label>
+        <Button Foreground="White" Grid.Column="2" Background="Transparent" Grid.Row="1" VerticalAlignment="Bottom"  FontSize="15px"  HorizontalAlignment="Right" Click="Button_Click" >Game info</Button>
+        <Label Foreground="White" Name="lblArrayWoord" Grid.Column="1" VerticalAlignment="Bottom" FontSize="25px" Margin="0,100" HorizontalAlignment="Center" FontWeight="Bold"></Label>
+
+
+        <Button Foreground="White" Background="Black" BorderBrush="Red"  BorderThickness="3px" VerticalAlignment="Top" Margin="0,50" Height="60px" Click="btnNieuwspel_Click"  FontSize="15px" >Nieuw spel</Button>
+
+
+        <Button Foreground="White" Background="Transparent" BorderBrush="Red" BorderThickness="3px " Name="btnVerbergWoord" Height="60px" Click="btnVerbergWoord_Click">Verberg woord
+     
+        </Button>
+
+        <Button Foreground="White" Background="Transparent" BorderBrush="Red" BorderThickness="3px" IsDefault="False" Name="btnRaad" VerticalAlignment="Bottom" Margin="0,50" Height="60px" Click="btnRaad_Click"> Raad
+
+        </Button>
+
+        <Label Foreground="White" Name="lblInfo" VerticalAlignment="Top" Margin="20,50" Grid.Column="1" Height="auto"  FontSize="25px" FontWeight="Bold" HorizontalAlignment="Center">Geef een geheim woord in:</Label>
+        <TextBox  Foreground="White" Name="txbWoord" FontSize="45px" Grid.Column="1" Margin="20" VerticalAlignment="Center" Height="60px" TextAlignment="Center" Background="#FF424141" ></TextBox>
+        <Image Margin="10px" Name="imgHangMan" Grid.Column="2" Source="game.jpg"></Image>
+        <Label Foreground="White" Name="lblTime" Grid.Row="1" FontWeight="Bold" FontSize="15px" Margin="5" ></Label>
+
+    </Grid>
+</Window>
