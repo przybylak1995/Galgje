@@ -67,7 +67,7 @@ namespace Galgje4._0
             {
                 player1 = Interaction.InputBox("Geef naam player 1", "Player", "Player1");
                 ControleerOPNaam(player1);
-                if (player1 != string.Empty)
+                if (player1 != string.Empty && geenDubbeleNamen == true)
                 {
                     PlayersAddPlayers(player1);
                     this.Hide();
