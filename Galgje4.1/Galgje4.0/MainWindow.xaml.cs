@@ -246,6 +246,7 @@ namespace Galgje4._0
             CheckFouteLetters(userInput);
             if (pictNumber == 11) // einde van het spel je bent verlorern
             {
+                levenVerloren++;
                 TimerEnd();
                 return;
             }
@@ -334,6 +335,7 @@ namespace Galgje4._0
             {
                 gridKleur.Background = new SolidColorBrush(Colors.Red);
                 MessageBox.Show("Je tijd is om Sneller raden");
+                gridKleur.Background = new SolidColorBrush(Colors.Black);
                 levenVerloren++;
                 HangManAfb();
                 pictNumber++;
@@ -350,10 +352,6 @@ namespace Galgje4._0
                 btnRaadIsGeKikt = false;
                 letterGevonden = false;
                 return;
-            }
-            if (time > Menu.dynalischeTimer - 1)
-            {
-                gridKleur.Background = new SolidColorBrush(Colors.Black);
             }
             if (time != Menu.dynalischeTimer) //zodra het spel start kan je niet terug naar het menu voor de aanpassingen te maken.
             {
