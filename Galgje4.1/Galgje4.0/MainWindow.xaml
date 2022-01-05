@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Galgje4._0"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="1000" WindowStartupLocation="CenterScreen" WindowStyle="None">
-    <Grid  Background="Black" Name="gridKleur"  >
+    <Grid Background="Black"  Name="gridKleur"  >
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
