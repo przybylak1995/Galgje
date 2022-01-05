@@ -216,7 +216,7 @@ namespace Galgje4._0
         {
             bool check = int.TryParse(txbWoord.Text, out int letter);
 
-            var regexItem = new Regex("^[a-zA-Z ]*$"); // controle op speciale char 
+            var regexItem = new Regex("^[a-zA-Z-09]*$"); // controle op speciale char 
 
             if (regexItem.IsMatch(txbWoord.Text))
             {
@@ -243,7 +243,7 @@ namespace Galgje4._0
             btnRaadIsGeKikt = true;
             string userInput = txbWoord.Text;
             letterGevonden = false;
-            CheckFouteLetters(userInput);
+            CheckFouteLetters(userInput); // controleerd als je deze foute letter al hebt ingegeven.
             if (pictNumber == 11) // einde van het spel je bent verlorern
             {
                 levenVerloren++;
@@ -259,7 +259,7 @@ namespace Galgje4._0
             {
                 RaadLetter(userInput[0]);
 
-                if (letterGevonden == false) // toevoegen van Foute letter
+                if (letterGevonden == false) // Foute letter nog niet ingegeven dus word toegevoegd en je verliest een leven 
                 {
                     levenVerloren++;
                     fouteLetters += userInput;
@@ -278,12 +278,12 @@ namespace Galgje4._0
         }
         private void RaadLetter(char letter)
         {
-            for (int i = 0; i < geheimWoord.Length; i++)                           //Gaat over de lengte van het woord
+            for (int i = 0; i < geheimWoord.Length; i++)                          
             {
-                if (letter.Equals(geheimWoord[i]))                                  //Kijkt of het ingegeven karakter voorkomt in het te raden woord
+                if (letter.Equals(geheimWoord[i]))                                  
                 {
 
-                    geradenwoord[i] = letter;                                       //Zet de _ om in het juist geraden karakter
+                    geradenwoord[i] = letter;                                       
                     letterGevonden = true;
 
                 }
@@ -331,15 +331,13 @@ namespace Galgje4._0
         private void Timer2_Tick(object sender, EventArgs e)
         {
             lblAfteller.Content = --time;
+            if (time == 0)
+            {
+                TeTraagGeraden();
+            }
             if (time == 0 && letterGevonden == false)
             {
-                gridKleur.Background = new SolidColorBrush(Colors.Red);
-                MessageBox.Show("Je tijd is om Sneller raden");
-                gridKleur.Background = new SolidColorBrush(Colors.Black);
-                levenVerloren++;
-                HangManAfb();
-                pictNumber++;
-                time = Menu.dynalischeTimer;
+                TeTraagGeraden();
             }
             if (pictNumber == 12) // einde van het spel je bent verlorern
             {
@@ -358,16 +356,29 @@ namespace Galgje4._0
                 btnMenu.IsEnabled = false;
             }
         }
+        private void TeTraagGeraden ()
+        {
+            gridKleur.Background = new SolidColorBrush(Colors.Red);
+            MessageBox.Show("Je tijd is om Sneller raden");
+            gridKleur.Background = new SolidColorBrush(Colors.Black);
+            levenVerloren++;
+            HangManAfb();
+            pictNumber++;
+            time = Menu.dynalischeTimer;
+
+        }
         private void TimerEnd()
         {
+            string gWoord = new string(geheimWoord);
             Menu.AddLevensVerloren();
             HangManAfb();
-            MessageBox.Show("Je hebt het spel verloren :(");
+            timer2.Stop();
+            MessageBox.Show($"Je hebt het spel verloren!! Het woord was {gWoord}");
             rounds++;
             GameEnd();
         }
 
-        private void PlaatsLetter()
+        private void PlaatsLetter() // Plaats de gevonden juiste letter op de juiste plaats
         {
             string woord = "";
 
@@ -376,7 +387,7 @@ namespace Galgje4._0
                 woord += geradenwoord[i] + " ";
             }
 
-            lblArrayWoord.Content = $"{woord}";
+            lblArrayWoord.Content = $"{woord}"; 
         }
 
         private void GameEnd() // Wat als woord niet word geraden ??

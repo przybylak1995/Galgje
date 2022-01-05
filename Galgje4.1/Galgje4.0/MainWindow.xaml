@@ -26,7 +26,7 @@
         <Label Foreground="White" Name="lblArrayWoord" Grid.Column="1" VerticalAlignment="Bottom" FontSize="25px" Margin="0,100" HorizontalAlignment="Center" FontWeight="Bold"></Label>
         <Button FontFamily="Sylfaen" Name="btnHint" Grid.Row="1" Grid.Column="1" Margin="10" Background="Transparent" Foreground="WhiteSmoke" BorderBrush="Blue" BorderThickness="3px"  FontSize="20px" Click="btnHint_Click">Hint</Button>
 
-        <Button FontFamily="Sylfaen" Foreground="White" Background="Black"  VerticalAlignment="Top" Margin="0,50" Height="60px" Click="btnNieuwspel_Click"  FontSize="15px" >
+        <Button FontFamily="Sylfaen" Foreground="White"  Background="Black"  VerticalAlignment="Top" Margin="0,50" Height="60px" Click="btnNieuwspel_Click"  FontSize="25px" >
             <Button.Template >
                 <ControlTemplate TargetType="Button"  >
                     <ContentControl >
@@ -47,7 +47,7 @@
         </Button>
 
 
-        <Button FontFamily="Sylfaen" Foreground="White" Content="Verberg woord" Background="Transparent" BorderBrush="Red" BorderThickness="3px " Name="btnVerbergWoord" Height="60px" Click="btnVerbergWoord_Click">
+        <Button FontFamily="Sylfaen" Foreground="White" FontSize="25px" Content="Verberg woord" Background="Transparent" BorderBrush="Red" BorderThickness="3px " Name="btnVerbergWoord" Height="60px" Click="btnVerbergWoord_Click">
             <Button.Template >
                 <ControlTemplate TargetType="Button"  >
                     <ContentControl >
@@ -67,7 +67,7 @@
             </Button.Template>
         </Button>
 
-        <Button FontFamily="Sylfaen" Foreground="White" Background="Transparent" IsDefault="False" Name="btnRaad" VerticalAlignment="Bottom" Margin="0,50" Height="60px" Click="btnRaad_Click">
+        <Button FontSize="25px" FontFamily="Sylfaen" Foreground="White" Background="Transparent" IsDefault="False" Name="btnRaad" VerticalAlignment="Bottom" Margin="0,50" Height="60px" Click="btnRaad_Click">
             <Button.Template >
                 <ControlTemplate TargetType="Button"  >
                     <ContentControl >
