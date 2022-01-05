@@ -37,3 +37,4 @@ C:\Users\krist\Source\Repos\przybylak1995\Galgje\Galgje4.1\Galgje4.0\obj\Debug\G
 C:\Users\krist\Source\Repos\przybylak1995\Galgje\Galgje4.1\Galgje4.0\obj\Debug\Galgje4.0.csproj.CoreCompileInputs.cache
 C:\Users\krist\Source\Repos\przybylak1995\Galgje\Galgje4.1\Galgje4.0\obj\Debug\Galgje4.0.exe
 C:\Users\krist\Source\Repos\przybylak1995\Galgje\Galgje4.1\Galgje4.0\obj\Debug\Galgje4.0.pdb
+C:\Users\krist\source\repos\przybylak1995\Galgje\Galgje4.1\Galgje4.0\obj\Debug\Galgje4.0.csproj.AssemblyReference.cache

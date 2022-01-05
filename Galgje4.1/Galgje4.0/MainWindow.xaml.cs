@@ -230,15 +230,18 @@ namespace Galgje4._0
                 checkWord = false; // checkword is false dus geen fouten gevonden game kan starten
             }
         }
-
+        // het raden van een char of een woord word eerst gecotroleerd als de letter al in de lijst met foute letters zit 
+        // vervolgens is er een controle als je nog levens over hebt 
+        // als het geraden woord meer dan 1 char bevat word het verwerkt als een woord anders als een letter
+        //
         private void btnRaad_Click(object sender, RoutedEventArgs e)
         {
             
             btnRaadIsGeKikt = true;
             string userInput = txbWoord.Text;
             letterGevonden = false;
-            CheckFouteLetters(userInput); // controleerd als je deze foute letter al hebt ingegeven.
-            if (pictNumber == 11) // einde van het spel je bent verlorern
+            CheckFouteLetters(userInput); 
+            if (pictNumber == 11) 
             {
                 levenVerloren++;
                 TimerEnd();
@@ -270,7 +273,7 @@ namespace Galgje4._0
             txbWoord.Text = string.Empty;
 
         }
-        private void RaadLetter(char letter)
+        private void RaadLetter(char letter) // er word maar 1 char ingegeven en deze word gecontroleerd in het geheime woord.
         {
             for (int i = 0; i < geheimWoord.Length; i++)                          
             {
@@ -283,13 +286,15 @@ namespace Galgje4._0
                 }
             }
         }
-        private void RaadHetWoord()// spel eindigd pas als het volledige woord juist getypd is 
-        {
+        // controle als het woord dat getypt is overeenkomt met het geheime woord , zo jah word het spel afgesloten 
+        // zo niet dan verlied je een leven en gaat het spel verder.
+        private void RaadHetWoord()
+        { 
             string gwoord = new string(geheimWoord);
-            if (gwoord == txbWoord.Text)
+            if (gwoord == txbWoord.Text) 
             {
                 
-                Menu.AddLevensVerloren();
+                Menu.AddLevensVerloren(); 
                 rounds++;
                 MessageBox.Show($"Je hebt het woord {gwoord} geraden");
 
@@ -303,7 +308,8 @@ namespace Galgje4._0
                 pictNumber++;
             }
         }
-        private void Timer1() // weergaven van de tijd 
+        // klok voor het weergeven van de tijd 
+        private void Timer1() 
         {
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 1);
@@ -311,17 +317,20 @@ namespace Galgje4._0
             timer.Start();
         }
 
-        private void Timer_Tick(object sender, EventArgs e) // tick event van de klok
+        private void Timer_Tick(object sender, EventArgs e) 
         {
             lblTime.Content = DateTime.Now.ToString("HH:mm:ss");
         }
-
-        private void Afteller() // de aflopende tijd 
+        // De dynamische afteller
+        private void Afteller() 
         {
             timer2.Tick += Timer2_Tick;
             timer2.Interval = new TimeSpan(0, 0, 1);
         }
-
+        // tick event van de afteller hier controleer ik al de teller op 0 staat maar er nog geen letter is ingegeven 
+        // de knop menu om terug naar het start scherm tegaan verdwijnt zodra het spel start
+        // als je levens opzijn word het spel gestopt 
+        // als je een letter of woord ingeeft word de timer gereset 
         private void Timer2_Tick(object sender, EventArgs e)
         {
             lblAfteller.Content = --time;
@@ -333,7 +342,7 @@ namespace Galgje4._0
             {
                 TeTraagGeraden();
             }
-            if (pictNumber == 12) // einde van het spel je bent verlorern
+            if (pictNumber == 12) 
             {
 
                 TimerEnd();
@@ -345,11 +354,12 @@ namespace Galgje4._0
                 letterGevonden = false;
                 return;
             }
-            if (time != Menu.dynalischeTimer) //zodra het spel start kan je niet terug naar het menu voor de aanpassingen te maken.
+            if (time != Menu.dynalischeTimer) 
             {
                 btnMenu.IsEnabled = false;
             }
         }
+        // je tijd is afgelopen dus krijg je een rode melding , vervolgens verlies je een leven en het spel gaat verder
         private void TeTraagGeraden ()
         {
             gridKleur.Background = new SolidColorBrush(Colors.Red);
@@ -361,6 +371,7 @@ namespace Galgje4._0
             time = Menu.dynalischeTimer;
 
         }
+        // je verliest het spel omdat je te traag.
         private void TimerEnd()
         {
             string gWoord = new string(geheimWoord);
@@ -383,8 +394,8 @@ namespace Galgje4._0
 
             lblArrayWoord.Content = $"{woord}"; 
         }
-
-        private void GameEnd() // Wat als woord niet word geraden ??
+        // alles word volledig gereset voor een nieuw spel te kunnen starten.
+        private void GameEnd() 
         {
             if(Menu.isActive1 == true)
             {
@@ -415,6 +426,7 @@ namespace Galgje4._0
                 rounds = 1;
             }
         }
+        // het inladen van de verschillende afbeeldingen van de hangman.
         private void HangManAfb ()
         {
             imgHangMan.Source = new BitmapImage(new Uri(@"img/hang" + pictNumber + ".png", UriKind.RelativeOrAbsolute));
@@ -424,7 +436,9 @@ namespace Galgje4._0
         {
             Application.Current.Shutdown();
         }
-
+        // Het weergeven van het startscherm 
+        // als hier op geklikt word voor het spel start worden de huidige gegevens gewist omdat je zo terug toegang krijgt tot het aanpassen 
+        // van de timer en de namen van de spelers 
         private void btnMenu_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
@@ -436,7 +450,9 @@ namespace Galgje4._0
             menuGame.Show();
         }
 
-        private void btnHint_Click(object sender, RoutedEventArgs e) // er word voor een hint gevraagd
+        // het random verkijgen van een letter die niet in het woord voorkomt 
+        // als hier op geklikt word kom je niet meer in aamerking voor het score bord
+        private void btnHint_Click(object sender, RoutedEventArgs e) 
         {
            
             string oke = "";
@@ -478,7 +494,7 @@ namespace Galgje4._0
             }
   
         }
-
+        // Als je een foute letter voor meerdere keren raad krijg je een melding dat je deze letter al hebt geraden
         private void CheckFouteLetters (string userInput) // controlen als je dezelfde letter dubben raad
         {
             if(fouteLetters != null)
