@@ -36,7 +36,10 @@ namespace Galgje4._0
         {
             Application.Current.Shutdown(); //afsluiten van de volledige app
         }
-
+        // Bij het starten van het spel word gekeken welke modus gekozen is 
+        // vervolgens word het spel gestart met de vraag van de ingaven van de speler zijn naam of namen 
+        // het spel start niet zolang er een naam is ingegeven 
+        // Een naam kan niet 2 keer dezelfde zijn op de high score 
         private void btnPLay_Click(object sender, RoutedEventArgs e)
         {
             MainWindow window = new MainWindow();
@@ -76,7 +79,8 @@ namespace Galgje4._0
             }
             window.lblSpelerAanZet.Content = $"{player1}";
         }
-        private void ControleerOPNaam (string pl1 , string pl2 = null) // controleren als de naam van de speler al bestaat 
+        // controleren als de naam van de speler al bestaat in de list
+        private void ControleerOPNaam (string pl1 , string pl2 = null) 
         {
             foreach (var item in players)
             {
@@ -88,9 +92,10 @@ namespace Galgje4._0
                 }
                 
             }
-           
+
         }
-        public void DeletePlayers () // wissen van de spelers die het spel vroegtijdig verlaten door terug naar het menu te gaan.
+        // wissen van de spelers die het spel vroegtijdig verlaten door terug naar het menu te gaan.
+        public void DeletePlayers ()
         {
             for (int i = 0; i < players.Count; i++)
             {
@@ -110,6 +115,7 @@ namespace Galgje4._0
             }
 
         }
+        // het toevoegen van een nieuwe speler aan de list
         private void PlayersAddPlayers(string ppl) // Toevoegen van de spelers
         {
             Players player = new Players();
