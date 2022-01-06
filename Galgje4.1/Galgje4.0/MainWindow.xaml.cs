@@ -334,11 +334,12 @@ namespace Galgje4._0
         private void Timer2_Tick(object sender, EventArgs e)
         {
             lblAfteller.Content = --time;
-            if (time == 0)
+      
+            if (time == 0 && letterGevonden == false)
             {
                 TeTraagGeraden();
             }
-            if (time == 0 && letterGevonden == false)
+            if (time == 0)
             {
                 TeTraagGeraden();
             }
@@ -362,13 +363,14 @@ namespace Galgje4._0
         // je tijd is afgelopen dus krijg je een rode melding , vervolgens verlies je een leven en het spel gaat verder
         private void TeTraagGeraden ()
         {
+            time = Menu.dynalischeTimer;
             gridKleur.Background = new SolidColorBrush(Colors.Red);
             MessageBox.Show("Je tijd is om Sneller raden");
             gridKleur.Background = new SolidColorBrush(Colors.Black);
             levenVerloren++;
             HangManAfb();
             pictNumber++;
-            time = Menu.dynalischeTimer;
+            
 
         }
         // je verliest het spel omdat je te traag.

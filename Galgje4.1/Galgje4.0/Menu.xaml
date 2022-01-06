@@ -8,6 +8,7 @@
         Title="Menu" Height="320" Width="600" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid Background="Black">
         <Grid.RowDefinitions>
+          
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition  Height="*"></RowDefinition>
