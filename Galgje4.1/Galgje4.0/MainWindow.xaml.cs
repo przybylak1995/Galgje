@@ -18,7 +18,7 @@ namespace Galgje4._0
     public partial class MainWindow : Window
     {
         int randomNmber;
-        public static int levenVerloren ;
+        public static int levenVerloren;
         bool checkWord = false, btnRaadIsGeKikt = false;
         bool letterGevonden = false; public static bool hintGebruikt = false;
         string fouteLetters;
@@ -104,15 +104,15 @@ namespace Galgje4._0
                 "schuit", "weivlies","ontzeggen","schijn","sousafoon"
             };
 
-         int time ;
+        int time;
         public MainWindow()
         {
             InitializeComponent();
             CheckMenuActive();
             Timer1();
-            Afteller();           
+            Afteller();
             btnRaad.IsEnabled = false;
-            btnVerbergWoord.IsDefault = true;            
+            btnVerbergWoord.IsDefault = true;
         }
 
         private void CheckMenuActive()
@@ -122,36 +122,32 @@ namespace Galgje4._0
                 lblInfo.Content = "Klik op random";
                 txbWoord.IsEnabled = false;
                 btnVerbergWoord.Content = "Random woord";
-               
-            } 
-          
+
+            }
+
         }
-        private void Button_Click(object sender, RoutedEventArgs e) // laten zien van het infoMenu
-        {           
-            Info info = new Info();
-            info.Show();            
-        }
-        private void SinglePlayer () // als single player optie is gekozen word een een random woord gemaakt
+  
+        private void SinglePlayer() // als single player optie is gekozen word een een random woord gemaakt
         {
             Random rnd = new Random();
             txbWoord.IsEnabled = true;
             int random = rnd.Next(0, galgjeWoorden.Length);
             string randomWoord = galgjeWoorden[random];
             txbWoord.Visibility = Visibility.Hidden;
-            txbWoord.Text = randomWoord;           
+            txbWoord.Text = randomWoord;
         }
 
         private void btnNieuwspel_Click(object sender, RoutedEventArgs e) //Huidige spel met zelfde spelers resetten
         {
-            btnMenu.IsEnabled = true;
+            mnuTimer.IsEnabled = true;
             rounds = 1;
             GameEnd();
-            
+
         }
         private void AantalSpelers2() // aanpassen van het info menu en welke speler er aan zet is 
         {
-        
-            if(Menu.isActive1 != true)
+
+            if (Menu.isActive1 != true)
             {
                 if (rounds % 2 == 0)
                 {
@@ -164,18 +160,18 @@ namespace Galgje4._0
                     lblInfo.Content = $"{Menu.player2} geef een \ngeheim woord in:";
                 }
             }
-            
+
         }
 
         private void btnVerbergWoord_Click(object sender, RoutedEventArgs e) // woord generegen voor spel te spelen
         {
-           
+            mnuTimer.IsEnabled = false;
             if (Menu.isActive1 == true)// als de speler de single player modus heeft gekozen
             {
                 SinglePlayer(); //Random woord generator
             }
 
-            geheimWoord = txbWoord.Text.Trim(' ').ToCharArray();          
+            geheimWoord = txbWoord.Text.Trim(' ').ToCharArray();
             time = Menu.dynalischeTimer;
             geradenwoord = new char[geheimWoord.Length];
             GeenCijfers();
@@ -187,7 +183,7 @@ namespace Galgje4._0
             }
             else if (checkWord == false)
             {
-                
+
                 timer2.Start();        // timer voor antwoord
                 btnRaad.IsEnabled = true;
                 btnHint.IsEnabled = true;
@@ -236,12 +232,12 @@ namespace Galgje4._0
         //
         private void btnRaad_Click(object sender, RoutedEventArgs e)
         {
-            
+
             btnRaadIsGeKikt = true;
             string userInput = txbWoord.Text;
             letterGevonden = false;
-            CheckFouteLetters(userInput); 
-            if (pictNumber == 11) 
+            CheckFouteLetters(userInput);
+            if (pictNumber == 11)
             {
                 levenVerloren++;
                 TimerEnd();
@@ -275,12 +271,12 @@ namespace Galgje4._0
         }
         private void RaadLetter(char letter) // er word maar 1 char ingegeven en deze word gecontroleerd in het geheime woord.
         {
-            for (int i = 0; i < geheimWoord.Length; i++)                          
+            for (int i = 0; i < geheimWoord.Length; i++)
             {
-                if (letter.Equals(geheimWoord[i]))                                  
+                if (letter.Equals(geheimWoord[i]))
                 {
 
-                    geradenwoord[i] = letter;                                       
+                    geradenwoord[i] = letter;
                     letterGevonden = true;
 
                 }
@@ -289,12 +285,12 @@ namespace Galgje4._0
         // controle als het woord dat getypt is overeenkomt met het geheime woord , zo jah word het spel afgesloten 
         // zo niet dan verlied je een leven en gaat het spel verder.
         private void RaadHetWoord()
-        { 
+        {
             string gwoord = new string(geheimWoord);
-            if (gwoord == txbWoord.Text) 
+            if (gwoord == txbWoord.Text)
             {
-                
-                Menu.AddLevensVerloren(); 
+
+                Menu.AddLevensVerloren();
                 rounds++;
                 MessageBox.Show($"Je hebt het woord {gwoord} geraden");
 
@@ -309,7 +305,7 @@ namespace Galgje4._0
             }
         }
         // klok voor het weergeven van de tijd 
-        private void Timer1() 
+        private void Timer1()
         {
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 1);
@@ -317,12 +313,12 @@ namespace Galgje4._0
             timer.Start();
         }
 
-        private void Timer_Tick(object sender, EventArgs e) 
+        private void Timer_Tick(object sender, EventArgs e)
         {
             lblTime.Content = DateTime.Now.ToString("HH:mm:ss");
         }
         // De dynamische afteller
-        private void Afteller() 
+        private void Afteller()
         {
             timer2.Tick += Timer2_Tick;
             timer2.Interval = new TimeSpan(0, 0, 1);
@@ -334,7 +330,7 @@ namespace Galgje4._0
         private void Timer2_Tick(object sender, EventArgs e)
         {
             lblAfteller.Content = --time;
-      
+
             if (time == 0 && letterGevonden == false)
             {
                 TeTraagGeraden();
@@ -343,7 +339,7 @@ namespace Galgje4._0
             {
                 TeTraagGeraden();
             }
-            if (pictNumber == 12) 
+            if (pictNumber == 12)
             {
 
                 TimerEnd();
@@ -355,13 +351,10 @@ namespace Galgje4._0
                 letterGevonden = false;
                 return;
             }
-            if (time != Menu.dynalischeTimer) 
-            {
-                btnMenu.IsEnabled = false;
-            }
+         
         }
         // je tijd is afgelopen dus krijg je een rode melding , vervolgens verlies je een leven en het spel gaat verder
-        private void TeTraagGeraden ()
+        private void TeTraagGeraden()
         {
             time = Menu.dynalischeTimer;
             gridKleur.Background = new SolidColorBrush(Colors.Red);
@@ -370,7 +363,7 @@ namespace Galgje4._0
             levenVerloren++;
             HangManAfb();
             pictNumber++;
-            
+
 
         }
         // je verliest het spel omdat je te traag.
@@ -394,19 +387,19 @@ namespace Galgje4._0
                 woord += geradenwoord[i] + " ";
             }
 
-            lblArrayWoord.Content = $"{woord}"; 
+            lblArrayWoord.Content = $"{woord}";
         }
         // alles word volledig gereset voor een nieuw spel te kunnen starten.
-        private void GameEnd() 
+        private void GameEnd()
         {
-            if(Menu.isActive1 == true)
+            if (Menu.isActive1 == true)
             {
                 txbWoord.IsEnabled = false;
-               
+
             }
             lblInfo.Content = "Klik op random";
-            hintGebruikt = false; 
-            levenVerloren = 0;      
+            hintGebruikt = false;
+            levenVerloren = 0;
             AantalSpelers2();
             timer2.Stop();
             lblAfteller.Content = $"{Menu.dynalischeTimer}";
@@ -429,7 +422,7 @@ namespace Galgje4._0
             }
         }
         // het inladen van de verschillende afbeeldingen van de hangman.
-        private void HangManAfb ()
+        private void HangManAfb()
         {
             imgHangMan.Source = new BitmapImage(new Uri(@"img/hang" + pictNumber + ".png", UriKind.RelativeOrAbsolute));
         }
@@ -437,41 +430,35 @@ namespace Galgje4._0
         private void btnAfsluiten_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
-        }
-        // Het weergeven van het startscherm 
-        // als hier op geklikt word voor het spel start worden de huidige gegevens gewist omdat je zo terug toegang krijgt tot het aanpassen 
-        // van de timer en de namen van de spelers 
-        private void btnMenu_Click(object sender, RoutedEventArgs e)
-        {
-            this.Hide();
-            menuGame.DeletePlayers();
-            GameEnd();
-            rounds = 1;
-            Menu.isActive1 = false;
-            Menu.isActive = false;
-            menuGame.Show();
-        }
+        }    
 
         // het random verkijgen van een letter die niet in het woord voorkomt 
         // als hier op geklikt word kom je niet meer in aamerking voor het score bord
-        private void btnHint_Click(object sender, RoutedEventArgs e) 
+        private void btnHint_Click(object sender, RoutedEventArgs e)
         {
-           
+            HintVragen();
+
+
+        }
+        private void HintVragen ()
+        {
+
+
             string oke = "";
             bool rndHintOke = true;
             Random rnd = new Random();
-            if( btnRaad.IsEnabled == true)
+            if (btnRaad.IsEnabled == true)
             {
-                
+
                 hintGebruikt = true;
 
                 do
                 {
                     rndHintOke = true;
                     char[] hint = new char[]
-    {
-                'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
-    };
+                     {
+                     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+                     };
                     randomNmber = rnd.Next(0, hint.Length);
                     for (int i = 0; i < geheimWoord.Length; i++)
                     {
@@ -494,23 +481,67 @@ namespace Galgje4._0
                 MessageBox.Show("Je Hebt nog geen geheim woord");
                 btnHint.IsEnabled = false;
             }
-  
+
         }
-        // Als je een foute letter voor meerdere keren raad krijg je een melding dat je deze letter al hebt geraden
-        private void CheckFouteLetters (string userInput) // controlen als je dezelfde letter dubben raad
+
+        // Menu item click event voor het volledige spel af te sluiten
+        private void MnuAfsluiten(object sender, RoutedEventArgs e)
         {
-            if(fouteLetters != null)
+            Application.Current.Shutdown();
+        }
+
+        // Het laten zien van de hoogste scores je kan deze in de game zien de namen van de huidige spelers staan er al tussen 
+        // maar als het spel niet word gespeeld verdijwnen deze van de high scores
+        private void MnuHighscores(object sender, RoutedEventArgs e)
+        {
+            Menu.HIscores();
+        }
+
+        // Terug naar het hoofmenu voor het starten van een volledig nieuw spel de huidige spelers en punten worden gewist
+        private void MnuNieuwSpel(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            menuGame.DeletePlayers();
+            GameEnd();
+            rounds = 1;
+            Menu.isActive1 = false;
+            Menu.isActive = false;
+            menuGame.Show();
+        }
+        //Info menu voor de spelregels
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Info info = new Info();
+            info.Show();
+        }
+        //Hint vragen via menu item
+        private void MnuHint(object sender, RoutedEventArgs e)
+        {
+            HintVragen();
+        }
+
+        private void MnuTimer(object sender, RoutedEventArgs e)
+        {
+            Menu.SetTimerGame();
+        }
+
+
+
+        // Als je een foute letter voor meerdere keren raad krijg je een melding dat je deze letter al hebt geraden
+        private void CheckFouteLetters(string userInput) // controlen als je dezelfde letter dubben raad
+        {
+            if (fouteLetters != null)
             {
-                if(fouteLetters.Contains(userInput))
+                if (fouteLetters.Contains(userInput))
                 {
                     MessageBox.Show("Deze letter heb je al geraden!!");
                     letterGevonden = true;
                 }
-              
+
             }
-        
+
 
         }
-
+    
     }
 }

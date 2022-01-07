@@ -25,7 +25,7 @@ namespace Galgje4._0
         public static int dynalischeTimer = 10;
         public static bool isActive = false; public static bool isActive1 = false;
         public static string player1; public static string player2;
-        string show = "";
+         public static string show = "";
        
         public Menu()
         {
@@ -125,6 +125,11 @@ namespace Galgje4._0
         // Instellen van de dynamische timer
         private void btnSetTimer_Click(object sender, RoutedEventArgs e)
         {
+            SetTimerGame();
+        }
+        public static void SetTimerGame ()
+        {
+
             bool fouteIngaven = false;
             do
             {
@@ -136,10 +141,9 @@ namespace Galgje4._0
                     fouteIngaven = true;
                     MessageBox.Show("Geef een nummer tussen 5 en 20");
                 }
-               
+
             } while (fouteIngaven == true);
 
-           
         }
         // De keuze knoppen voor enkel spel
         private void btnSinglePlayer_Click(object sender, RoutedEventArgs e)
@@ -244,22 +248,25 @@ namespace Galgje4._0
         }
         private void btnHighScores_Click(object sender, RoutedEventArgs e) // Het laten zien van de high scores
         {
-
+            HIscores();
+        }
+        public static void HIscores()
+        {
             List<Players> order = players.OrderBy(o => o.LevensVerloren).ToList(); // ordernen van de players list op basis van hoeveel levens er verloren zijn.
             show = "";
             int top5 = 1;
-            foreach (var item in order)
+
+            for (int i = 0; i < order.Count; i++)
             {
-                if(item.Hint == false && top5 < 6 )      // lest mag alleen de spelers laten zien die geen hint gebruikt hebben en ik wil een top 5              
+                if (order[i].Hint == false && top5 < 6 && order[i].Tijd != null)      // lest mag alleen de spelers laten zien die geen hint gebruikt hebben en ik wil een top 5              
                 {
 
-                    show += $"{top5}.Naam: {item.Naam} Levens Verloren: {item.LevensVerloren} Tijdstip: {item.Tijd} \n";
+                    show += $"{top5}.Naam: {order[i].Naam} Levens Verloren: {order[i].LevensVerloren} Tijdstip: {order[i].Tijd} \n";
                     top5++;
                 }
-               
             }
 
-            if(show != string.Empty)
+            if (show != string.Empty)
             {
                 MessageBox.Show(show);
             }
@@ -267,7 +274,7 @@ namespace Galgje4._0
             {
                 MessageBox.Show("Geen spelers gevonden");
             }
-          
+
         }
     }
 }

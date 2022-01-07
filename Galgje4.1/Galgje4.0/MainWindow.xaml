@@ -17,23 +17,21 @@
             <RowDefinition Height="7*"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <WrapPanel>
+        <WrapPanel Grid.Column="1">
             <Label FontFamily="Sylfaen" Name="lblSpelerAanZet" Height="auto" HorizontalAlignment="Center"  Foreground="WhiteSmoke" FontSize="15px">Player1</Label>
             <Label FontFamily="Sylfaen" Height="auto" Foreground="WhiteSmoke" FontSize="15px" >Speler:</Label>
         </WrapPanel>
-        <Label Grid.Column="1" VerticalAlignment="Bottom" Name="lblAfteller" FontSize="50px" Foreground="Green" HorizontalAlignment="Center" FontWeight="Bold"></Label>
-        <Button FontFamily="Sylfaen" Foreground="White" Grid.Column="2" Margin="10"  Background="Transparent" Grid.Row="1" VerticalAlignment="Center"  FontSize="25px"  HorizontalAlignment="Right" Click="Button_Click" >Game info</Button>
-        <Button FontFamily="Sylfaen" Name="btnAfsluiten" Foreground="White" Grid.Column="2" Margin="10"  Background="Transparent" Grid.Row="1" VerticalAlignment="Center"  FontSize="25px"  HorizontalAlignment="Left" Click="btnAfsluiten_Click" >Afsluiten</Button>
-        <Button FontFamily="Sylfaen" Name="btnMenu" Foreground="White" Grid.Column="2" Margin="10"  Background="Transparent" Grid.Row="1" VerticalAlignment="Center"  FontSize="25px"  HorizontalAlignment="Center" Click="btnMenu_Click" >Menu</Button>
+        <Label Grid.Column="1"  VerticalAlignment="Bottom" Name="lblAfteller" FontSize="65px" Foreground="Green" HorizontalAlignment="Center" FontWeight="Bold"></Label>
+        <Button FontFamily="Sylfaen" Foreground="White" Grid.Column="2" Margin="10"  Background="Transparent" Grid.Row="1" FontSize="30px" Click="Button_Click_1">Game Info</Button>
         <Label Foreground="White" Name="lblArrayWoord" Grid.Column="1" VerticalAlignment="Bottom" FontSize="25px" Margin="0,100" HorizontalAlignment="Center" FontWeight="Bold"></Label>
-        <Button FontFamily="Sylfaen" Name="btnHint" Grid.Row="1" Grid.Column="1" Margin="10" Background="Transparent" Foreground="WhiteSmoke" BorderBrush="Blue" BorderThickness="3px"  FontSize="20px" Click="btnHint_Click">Hint</Button>
+        <Button FontFamily="Sylfaen" Name="btnHint" Grid.Row="1" VerticalAlignment="Bottom" Grid.Column="1" Margin="10" Background="Transparent" Foreground="WhiteSmoke" BorderBrush="Blue" BorderThickness="3px"  FontSize="20px" Click="btnHint_Click">Hint</Button>
 
         <Button FontFamily="Sylfaen" Foreground="White"  Background="Black"  VerticalAlignment="Top" Margin="0,50" Height="60px" Click="btnNieuwspel_Click"  FontSize="25px" >
             <Button.Template >
                 <ControlTemplate TargetType="Button"  >
                     <ContentControl >
                         <Border x:Name="myBorder" BorderBrush="Red" BorderThickness="3" CornerRadius="20" >
-                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Content="Nieuw spel">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Content="Reset spel">
 
                             </ContentPresenter>
                         </Border>
@@ -93,6 +91,17 @@
         <TextBox  Foreground="White" Name="txbWoord" FontSize="45px" Grid.Column="1" Margin="20" VerticalAlignment="Center" Height="60px" TextAlignment="Center" Background="#FF424141" ></TextBox>
         <Image Margin="10" Name="imgHangMan" Grid.Column="2" Source="game.jpg"></Image>
         <Label VerticalAlignment="Center" Foreground="White" Name="lblTime" Grid.Row="1" FontWeight="Bold" FontSize="15px" Margin="5" ></Label>
-
+        <WrapPanel Margin="5" Grid.Column="0" Grid.Row="0">
+            <Menu>
+                <MenuItem Background="Black" Foreground="White" FontFamily="Sylfaen"  FontSize="20px" Header="Menu">
+                    <MenuItem Name="mnuAfsluiten"  Background="Black" Foreground="White"  FontFamily="Sylfaen"  FontSize="20px" Header="Spel afsluiten" Click="MnuAfsluiten"></MenuItem>
+                    <MenuItem Name="mnuHighScors" Background="Black" Foreground="White"  FontFamily="Sylfaen"  FontSize="20px" Header="High scores" Click="MnuHighscores"></MenuItem>
+                    <MenuItem Name="mnuNieuwSpel" Background="Black" Foreground="White"  FontFamily="Sylfaen"  FontSize="20px" Header="Nieuw spel" Click="MnuNieuwSpel" ></MenuItem>
+                    <MenuItem Name="mnuHint" Background="Black" Foreground="White"  FontFamily="Sylfaen"  FontSize="20px" Header="Hint" Click="MnuHint"></MenuItem>
+                    <MenuItem Name="mnuTimer" Background="Black" Foreground="White"  FontFamily="Sylfaen"  FontSize="20px" Header="Timer" Click="MnuTimer"></MenuItem>
+                </MenuItem>
+               
+            </Menu>
+        </WrapPanel>
     </Grid>
 </Window>
