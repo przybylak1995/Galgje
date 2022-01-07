@@ -234,7 +234,14 @@ namespace Galgje4._0
         {
 
             btnRaadIsGeKikt = true;
-            string userInput = txbWoord.Text;
+            string userInput = txbWoord.Text.ToLower();
+            var regexItem = new Regex("^[a-zA-Z-09]*$");
+            if (!regexItem.IsMatch(userInput))
+            {
+                MessageBox.Show("Check spelregels");
+                txbWoord.Text = "";
+                return;
+            }
             letterGevonden = false;
             CheckFouteLetters(userInput);
             if (pictNumber == 11)
